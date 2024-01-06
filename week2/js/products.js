@@ -59,10 +59,39 @@ const app = createApp({
     }
   },
   methods: {
-    
-    showDataFn() {
-      console.log(1)
+    userCheck() {
+      const api = `${baseUrl}/v2/api/user/check`;
+      axios.post(api)
+        .then((res)=>{
+          console.log('成功',res.data.success);
+          
+        })
+        .catch((err)=>{
+          alert(err.data.message);
+          window.location = 'login.html';
+        });
+    },
+    getAdminProducts() {
+      const api = `${baseUrl}/v2/api/user/check`;
+      axios.post(api)
+        .then((res)=>{
+          console.log(res);
+          alert()
+          
+        })
+        .catch((err)=>{
+          alert(err.data.message);
+          window.location = 'login.html';
+        });
     }
+  },
+  mounted(){
+    // 取得 Token（Token 僅需要設定一次）
+    const token = document.cookie.replace(/(?:(?:^|.*;\s*)adminAccount\s*\=\s*([^;]*).*$)|^.*$/,"$1",);
+    // 夾帶token在header中，只要加入一次就可以重複使用
+    axios.defaults.headers.common['Authorization'] = token;
+    // 觸發確認是否登入
+    this.userCheck();
   }
 })
 app.mount('#app');

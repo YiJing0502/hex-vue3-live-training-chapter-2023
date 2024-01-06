@@ -11,7 +11,6 @@ const app = createApp({
   },
   methods: {
     login(){
-      const baseUrl = 'https://vue3-course-api.hexschool.io';
       const api = `${baseUrl}/v2/admin/signin`;
       axios.post(api, this.user)
         .then((res)=>{
