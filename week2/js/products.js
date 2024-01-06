@@ -13,8 +13,7 @@ const app = createApp({
       axios.post(api)
         .then((res)=>{
           if(res.data.success){
-            console.log('成功登入！');
-            // alert('成功登入！');
+            alert('成功登入！');
             this.getAdminProductsAll();
           }
           
@@ -28,10 +27,7 @@ const app = createApp({
       const api = `${baseUrl}/v2/api/${apiPath}/admin/products/all`;
       axios.get(api)
         .then((res)=>{
-          // this.products.push(res.data.products)
-          console.log(res.data.products);
           this.products = res.data.products;
-          console.log(this.products.length);
         })
         .catch((err)=>{
           alert(err.data.message);
