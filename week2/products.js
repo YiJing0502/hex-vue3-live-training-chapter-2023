@@ -59,11 +59,11 @@ const app = createApp({
     }
   },
   methods: {
+    
     showDataFn() {
       console.log(1)
     }
   }
 })
-app.mount('#app')
-console.log(createApp)
+app.mount('#app');
 // 產品資料格式
