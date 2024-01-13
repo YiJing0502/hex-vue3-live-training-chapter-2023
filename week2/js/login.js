@@ -15,7 +15,6 @@ const app = createApp({
       axios.post(api, this.user)
         .then((res)=>{
           const { token, expired } = res.data;
-          console.log(new Date(expired));
           // 寫入 cookie的token
           // 使用 expired 設置有效時間
           document.cookie = `adminAccount=${token}; expires=${new Date(expired)}; path=/`;
