@@ -12,10 +12,7 @@ const app = createApp({
       if(this.email === '' && this.password === '') {
         alert('Enter email and password is required');
         return
-      }
-      console.log(axios);
-      console.log(this.email, this.password);
-      console.log(baseUrl);
+      };
       const obj = {
         "username": this.email,
         "password": this.password,
