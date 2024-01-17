@@ -40,15 +40,6 @@ const app = createApp({
       // 重新賦值給this.showData.imagesUrl
       this.showData.imagesUrl = imagesUrlArray;
     },
-    // modal, 新增單一圖片
-    addImage(){
-      // 如果存在就push如果不存在就新增
-      console.log(this.showData.imagesUrl.length);
-      if(this.showData.imagesUrl.length === 0){
-        this.showData.imagesUrl = [];
-        this.showData.imagesUrl.push('');
-      }
-    },
     // ajax, 確認使用者是否登入
     postApiUserCheck() {
       const url = `${baseUrl}/v2/api/user/check`;
@@ -90,13 +81,14 @@ const app = createApp({
       axios.post(url, data)
         .then(res=>{
           if(res.data.success){
-            getAdminProductsAll();
+            this.getAdminProductsAll();
             alert(res.data.message);
-          }
+            myProductModal.hide();
+          };
         })
         .catch(err=>{
-          if(!err?.data?.success ?? ''){
-            alert(err?.data?.message ?? '');
+          if(!err.data.success){
+            alert(err.data.message);
           }
         });
     },
