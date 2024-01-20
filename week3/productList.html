@@ -84,6 +84,7 @@
           <div class="modal-body">
             <div class="row">
               <div class="col-sm-4">
+                <!-- 主要圖片 -->
                 <div class="mb-2">
                   <div class="mb-3">
                     <label for="imageUrl" class="form-label">輸入主要圖片網址</label>
@@ -91,6 +92,7 @@
                   </div>
                   <img v-if="showData.imageUrl" class="img-fluid" :src="showData.imageUrl" :alt="showData.title">
                 </div>
+                <!-- 其他圖片 -->
                 <div v-if="showData.imagesUrl">
                   <div class="mb-2" v-for="(item, key) in showData.imagesUrl" :key="key">
                     <div class="mb-3">
