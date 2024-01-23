@@ -1,0 +1,38 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200;300;400;500;600;700;900&display=swap");
+body {
+  background-color: #FBFAF4;
+  font-family: "Noto Serif TC", serif;
+}
+
+.myTextColor {
+  color: #696969;
+}
+
+.resetBorderRadius {
+  border-radius: 0;
+}
+
+.form-control:focus {
+  border-color: #696969;
+  box-shadow: 0 0 0 0.25rem #FFF;
+}
+
+.btn-dp-spec {
+  border: solid 1px #A00000;
+  background-color: #A00000;
+  color: #FBFAF4;
+}
+.btn-dp-spec:hover {
+  background-color: #A00000;
+  color: #FFF;
+}
+
+.btn-dp-gray {
+  border: solid 1px #696969;
+  background-color: #696969;
+  color: #FBFAF4;
+}
+.btn-dp-gray:hover {
+  background-color: #696969;
+  color: #FBFAF4;
+}/*# sourceMappingURL=button.css.map */
