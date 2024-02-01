@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Detail</title>
+  <!-- bootStrapCss -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <!-- vueLoadingCss -->
+  <link href="https://cdn.jsdelivr.net/npm/vue-loading-overlay@6/dist/css/index.css" rel="stylesheet">
+  <!-- localCss -->
+  <link rel="stylesheet" href="../css/main.css">
+  <!-- swiperCss -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <style>
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+      -moz-appearance: textfield;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <loading v-if="isLoading" :active="isLoading" :background-color="'#EBEAE4'" :is-full-page="true" :color="'#52504B'">
+    </loading>
+    <div v-else class="container bg-main-medi rounded-10em mt-5 mb-5 px-5r py-7r">
+      <div class="row position-relative">
+        <div class="col me-5">
+          <img :src="showData.imageUrl" alt="" class="img-fluid">
+          <img v-for="item in showData.imagesUrl" :src="item" alt="" class="img-fluid">
+        </div>
+        <div class="col">
+          <!-- 商品分類與單位 -->
+          <div class="d-flex justify-content-between">
+            <p>{{ showData.category}}</p>
+            <p>{{ showData.unit}}</p>
+          </div>
+          <!-- 商品標題 -->
+          <h4>{{ showData.title }}</h4>
+          <hr>
+          <!-- 商品描述 -->
+          <p>{{ showData.description}}</p>
+          <!-- 商品價格 -->
+          <h4 class="mt-3 mb-3">NT$ {{ showData.price}}</h4>
+          <!-- 購物車增減按鈕與庫存 -->
+          <div class="d-flex">
+            <div class="bg-white d-flex w-50 mb-3 gap-3 border">
+              <button :disabled="currentNum===1" type="button" class="btn btn-lg" @click="minusNum">-</button>
+              <input type="number" class="form-control border-white shadow-none text-center" v-model.number="currentNum"
+                @blur="blurNum">
+              <button :disabled="currentNum===showData.inventory" type="button" class="btn btn-lg"
+                @click="plusNum">+</button>
+            </div>
+            <p class="d-flex align-items-end ms-3">目前庫存：{{ showData.inventory }}</p>
+          </div>
+          <!-- 加入購物車 -->
+          <div v-if="isSmLoading" class="d-flex mb-3 position-relative">
+            <loading :active="isSmLoading" :is-full-page="false" :color="'#52504B'" :width="30" :height="30">
+            </loading>
+            <button type="button" class="btn btn-solid-spec w-100 btn-lg">正在加入購物車</button>
+          </div>
+          <div v-else class="d-flex mb-3">
+            <button type="button" class="btn btn-solid-spec w-100 btn-lg"
+              @click="goToPostCart(showData.id, currentNum, showData.inventory)">加入購物車</button>
+          </div>
+          <hr>
+          <!-- 手風琴組 -->
+          <div class="accordion">
+            <!-- 商品內容 -->
+            <div class="accordion-item">
+              <!-- ProductContentSection -->
+              <h2 class="accordion-header" id="ProductContentSection">
+                <button class="accordion-button collapsed fs-5 fw-semibold" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#ProductContentDetails" aria-expanded="false" aria-controls="ProductContentDetails">
+                  內容
+                </button>
+              </h2>
+              <!-- ProductContentDetails -->
+              <div id="ProductContentDetails" class="accordion-collapse collapse show"
+                aria-labelledby="ProductContentSection">
+                <div class="accordion-body">
+                  <p>
+                    <span v-for="item in showData.content">{{item}}<br></span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Vue CDN -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+  <!-- VueDemi，使用 Pinia 必要的相依套件 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-demi/0.13.11/index.iife.js"></script>
+  <script>const I = VueDemi; const vueDemi = VueDemi;</script>
+
+  <!-- Pinia 網頁版，實戰中還是以 npm 為主，這是比較少見的使用方式 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pinia/2.0.28/pinia.iife.js"></script>
+  <!-- bootStrapJs -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- vueLoadingJs -->
+  <script src="https://cdn.jsdelivr.net/npm/vue-loading-overlay@6.0.3/dist/index.min.js"></script>
+  <!-- axios -->
+  <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+  <!-- swiperJs -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <!-- 引入本地 product.js -->
+  <script src="./productDetail.js" type="module"></script>
+</body>
+
+</html>

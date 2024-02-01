@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ProductList</title>
+  <!-- bootStrapCss -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <!-- vueLoadingCss -->
+  <link href="https://cdn.jsdelivr.net/npm/vue-loading-overlay@6/dist/css/index.css" rel="stylesheet">
+  <!-- localCss -->
+  <link rel="stylesheet" href="../css/main.css">
+</head>
+
+<body>
+  <div id="app">
+    <loading v-if="isLoading" :active="isLoading" :background-color="'#EBEAE4'" :is-full-page="true" :color="'#52504B'">
+    </loading>
+    <div v-else class="container bg-main-medi rounded-10em mt-5 mb-5 px-5r py-7r">
+      <div class="row">
+        <!-- sort title -->
+        <div class="col-8">
+          <h1 class="mb-3">所有商品</h1>
+        </div>
+        <div class="col-4">
+          <!-- search product -->
+          <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="搜尋產品...">
+          <datalist id="datalistOptions">
+            <option value="San Francisco">
+            <option value="New York">
+            <option value="Seattle">
+            <option value="Los Angeles">
+            <option value="Chicago">
+          </datalist>
+        </div>
+      </div>
+      <!-- dropDown/sort -->
+      <div class="d-flex justify-content-between">
+        <div class="border-start border-dark border-2">
+          <!-- 類別 -->
+          <div class="btn-group ms-3">
+            <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+              類別
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">全部</a></li>
+              <li><a class="dropdown-item" href="#">香氛蠟燭</a></li>
+              <li><a class="dropdown-item" href="#">香氛蠟燭</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" href="#">香氛蠟燭</a></li>
+            </ul>
+          </div>
+          <!-- 系列 -->
+          <div class="btn-group">
+            <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+              系列
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">全部</a></li>
+              <li><a class="dropdown-item" href="#">花香調</a></li>
+              <li><a class="dropdown-item" href="#">花香調</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" href="#">花香調</a></li>
+            </ul>
+          </div>
+          <!-- 調性 -->
+          <div class="btn-group">
+            <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+              調性
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">全部</a></li>
+              <li><a class="dropdown-item" href="#">花香調</a></li>
+              <li><a class="dropdown-item" href="#">花香調</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" href="#">花香調</a></li>
+            </ul>
+          </div>
+          <!-- 容量 -->
+          <div class="btn-group">
+            <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+              容量
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">全部</a></li>
+              <li><a class="dropdown-item" href="#">花香調</a></li>
+              <li><a class="dropdown-item" href="#">花香調</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" href="#">花香調</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="">
+          <button type="button" class="btn">價格由低到高</button>
+        </div>
+      </div>
+      <!-- product card -->
+      <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1 mt-3 mb-3">
+        <div class="col mb-3" v-for="item in productsData" :key="item.id">
+          <div class="card" @click="changeToProductPage(item.id)">
+            <img :src="item.imageUrl" class="card-img-top" alt="...">
+            <div class="card-body">
+              <p class="card-text">{{item.unit}}</p>
+              <h6 class="card-title">{{item.title}}</h6>
+              <p class="card-text">NT${{item.price}}</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Vue CDN -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <!-- VueDemi，使用 Pinia 必要的相依套件 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-demi/0.13.11/index.iife.js"></script>
+  <script>const I = VueDemi; const vueDemi = VueDemi;</script>
+  <!-- Pinia 網頁版，實戰中還是以 npm 為主，這是比較少見的使用方式 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pinia/2.0.28/pinia.iife.js"></script>
+  <!-- bootStrapJs -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- vueLoadingJs -->
+  <script src="https://cdn.jsdelivr.net/npm/vue-loading-overlay@6.0.3/dist/index.min.js"></script>
+  <!-- axios -->
+  <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+  <!-- 引入本地 product.js -->
+  <script src="./productList.js" type="module"></script>
+</body>
+
+</html>
