@@ -69,7 +69,6 @@ export default defineStore('ordersStore', {
         this.userData = JSON.parse(JSON.stringify(user));
         // 重新整理產品格式為陣列
         // 添加检查，确保 products 不是 undefined 或 null
-        console.log(products);
         if (products && typeof products === 'object') {
           Object.keys(products).forEach(item=>{
             const { final_total, id, product, product_id, qty, total } = products[item];

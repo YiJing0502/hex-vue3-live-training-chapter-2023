@@ -1,4 +1,3 @@
-console.clear();
 import { createApp } from 'https://cdnjs.cloudflare.com/ajax/libs/vue/3.4.11/vue.esm-browser.min.js';
 import { baseUrl, apiPath } from './config.js';
 import PageBtn from '../components/PageBtn.js';
@@ -315,7 +314,6 @@ const app = createApp({
         };
       });
       if(newData.length === 0){
-        console.log(newData.length);
         this.serverMessage.message = '很抱歉，沒有符合搜尋條件的產品';
         this.serverMessage.success = false;
         myResultModal.show();

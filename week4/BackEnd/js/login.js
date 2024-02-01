@@ -43,7 +43,6 @@ const app = createApp({
           }
         })
         .catch((err)=>{
-          console.log(err);
           this.serverMessage.message = err.response.data.message;
           this.serverMessage.success = err.response.data.success;
           myResultModal.show();

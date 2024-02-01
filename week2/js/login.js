@@ -1,4 +1,3 @@
-console.clear()
 import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
 const app = createApp({
   data(){
@@ -21,7 +20,6 @@ const app = createApp({
           window.location = 'products.html';
         })
         .catch((err)=>{
-          console.log(err);
           alert(err.response.data.message);
         });
     },
